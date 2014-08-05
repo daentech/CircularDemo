@@ -24,7 +24,7 @@ public class ProgressCircle extends View {
     private int angleGap = 2;
 
 
-    float mEndAngle = 0.7f;
+    float mEndAngle = 1.0f;
 
     Paint progressPaint = new Paint();
     Paint textPaint = new Paint();

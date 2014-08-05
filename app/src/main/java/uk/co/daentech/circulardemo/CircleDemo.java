@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Random;
+
 import uk.co.daentech.circulardemo.widgets.ProgressCircle;
 
 
@@ -44,6 +46,7 @@ public class CircleDemo extends Activity {
     }
 
     public void animate(View view) {
+        progressCircle.setValue(new Random().nextFloat());
         progressCircle.startAnimation();
     }
 }
