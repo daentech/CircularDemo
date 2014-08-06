@@ -16,13 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/circle"/>
 
-    <uk.co.daentech.circulardemo.widgets.ProgressCircle
-        android:id="@+id/circle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:textSize="30sp"
-        android:textColor="@android:color/holo_purple"
-        app:progressColor="@android:color/holo_green_dark"
-        app:incompleteProgressColor="@android:color/holo_orange_light"/>
+    <include layout="@layout/layout_cell" android:id="@+id/circle"/>
 
 </RelativeLayout>

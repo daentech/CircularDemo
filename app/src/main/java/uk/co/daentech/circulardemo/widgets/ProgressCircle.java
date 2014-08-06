@@ -3,13 +3,17 @@ package uk.co.daentech.circulardemo.widgets;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import uk.co.daentech.circulardemo.R;
 
@@ -21,14 +25,16 @@ public class ProgressCircle extends View {
     private final RectF mOval = new RectF();
     private float mSweepAngle = 0;
     private int startAngle = 90;
-    private int angleGap = 2;
+    private int angleGap = 4;
+    private Bitmap icon;
 
 
     float mEndAngle = 1.0f;
 
     Paint progressPaint = new Paint();
-    Paint textPaint = new Paint();
+    TextPaint textPaint = new TextPaint();
     Paint incompletePaint = new Paint();
+    Paint percentagePaint = new Paint();
 
     private float strokeWidth = 30.0f;
 
@@ -66,33 +72,55 @@ public class ProgressCircle extends View {
         textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(textColor);
         textPaint.setTextSize(textSize);
+        Typeface tf = Typeface.create("Roboto Condensed Light", Typeface.BOLD);
+        textPaint.setTypeface(tf);
+
+        percentagePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        percentagePaint.setColor(textColor);
+        percentagePaint.setTextSize(textSize / 3);
 
         incompletePaint.setColor(incompleteColor);
         incompletePaint.setStrokeWidth(strokeWidth);
         incompletePaint.setStyle(Paint.Style.STROKE);
         incompletePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+
+        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_placeholder);
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mOval.set(strokeWidth / 2, strokeWidth / 2, getWidth() - (strokeWidth / 2), getHeight() - (strokeWidth / 2));
-        canvas.drawArc(mOval, -startAngle + angleGap, (mSweepAngle * 360) - angleGap, false,
+        float currentAngleGap = mSweepAngle == 1.0f || mSweepAngle == 0 ? 0 : angleGap;
+        mOval.set(strokeWidth / 2, strokeWidth / 2, getWidth() - (strokeWidth / 2), getWidth() - (strokeWidth / 2));
+        canvas.drawArc(mOval, -startAngle + currentAngleGap, (mSweepAngle * 360) - currentAngleGap, false,
                 progressPaint);
 
-        mOval.set(strokeWidth / 2, strokeWidth / 2, getWidth() - (strokeWidth / 2), getHeight() - (strokeWidth / 2));
-        canvas.drawArc(mOval, mSweepAngle * 360- startAngle + angleGap, 360 - (mSweepAngle * 360) - angleGap, false,
+        mOval.set(strokeWidth / 2, strokeWidth / 2, getWidth() - (strokeWidth / 2), getWidth() - (strokeWidth / 2));
+        canvas.drawArc(mOval, mSweepAngle * 360- startAngle + currentAngleGap, 360 - (mSweepAngle * 360) - currentAngleGap, false,
                 incompletePaint);
 
-        drawText(canvas, textPaint, (int) (mSweepAngle * 100) + "%");
+        drawText(canvas, textPaint, String.valueOf((int) (mSweepAngle * 100)), percentagePaint);
+
+        if(icon != null)
+            canvas.drawBitmap(icon, canvas.getWidth() / 2 - icon.getWidth() / 2, strokeWidth + (canvas.getHeight() / 15), null);
     }
 
-    private void drawText(Canvas canvas, Paint paint, String text) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+    }
+
+    private void drawText(Canvas canvas, Paint paint, String text, Paint percentagePaint) {
         Rect bounds = new Rect();
         paint.getTextBounds(text, 0, text.length(), bounds);
-        int x = (canvas.getWidth() / 2) - (bounds.width() / 2);
+        Rect percentageBounds = new Rect();
+        percentagePaint.getTextBounds("%", 0, 1, percentageBounds);
+        int x = (canvas.getWidth() / 2) - (bounds.width() / 2) - (percentageBounds.width() / 2);
         int y = (canvas.getHeight() / 2) + (bounds.height() / 2);
         canvas.drawText(text, x, y, paint);
+
+        canvas.drawText("%", x + bounds.width() + percentageBounds.width() / 2, y - bounds.height() + percentageBounds.height(), percentagePaint);
     }
 
     public void setTextColor(int color) {
@@ -109,7 +137,7 @@ public class ProgressCircle extends View {
 
     public void setValue(float value) {
         if (value > 1.0f || value < 0) {
-            throw new RuntimeException("Value must be between 0 and 1");
+            throw new RuntimeException("Value must be between 0 and 1: " + value);
         }
 
         mEndAngle = value;
@@ -125,7 +153,7 @@ public class ProgressCircle extends View {
             }
         });
         anim.setDuration(500);
-        anim.setInterpolator(new OvershootInterpolator());
+        anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.start();
 
     }

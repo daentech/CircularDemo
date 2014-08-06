@@ -20,7 +20,7 @@ public class CircleDemo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_demo);
 
-        progressCircle = (ProgressCircle) findViewById(R.id.circle);
+        progressCircle = (ProgressCircle) findViewById(R.id.progress_circle);
 
         progressCircle.startAnimation();
     }
