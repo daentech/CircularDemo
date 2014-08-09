@@ -8,12 +8,14 @@ import android.view.View;
 
 import java.util.Random;
 
+import uk.co.daentech.circulardemo.widgets.ProgressBar;
 import uk.co.daentech.circulardemo.widgets.ProgressCircle;
 
 
 public class CircleDemo extends Activity {
 
     ProgressCircle progressCircle;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class CircleDemo extends Activity {
         setContentView(R.layout.activity_circle_demo);
 
         progressCircle = (ProgressCircle) findViewById(R.id.progress_circle);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         progressCircle.startAnimation();
     }
@@ -46,7 +49,11 @@ public class CircleDemo extends Activity {
     }
 
     public void animate(View view) {
-        progressCircle.setValue(new Random().nextFloat());
+        float val = new Random().nextFloat();
+        progressCircle.setValue(val);
         progressCircle.startAnimation();
+
+        progressBar.setProgress(val);
+        progressBar.startAnimation();
     }
 }

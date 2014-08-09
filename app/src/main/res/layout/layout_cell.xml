@@ -15,5 +15,9 @@
         app:progressColor="#BBD452"
         app:incompleteProgressColor="#D4D4D4"
         app:strokeWidth="35dp"/>
-
+    <uk.co.daentech.circulardemo.widgets.ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
