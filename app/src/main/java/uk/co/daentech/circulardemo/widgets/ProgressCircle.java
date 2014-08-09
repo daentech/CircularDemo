@@ -141,10 +141,12 @@ public class ProgressCircle extends View {
         }
 
         mEndAngle = value;
+
+        this.invalidate();
     }
 
     public void startAnimation() {
-        ValueAnimator anim = ValueAnimator.ofFloat(0, mEndAngle);
+        ValueAnimator anim = ValueAnimator.ofFloat(mSweepAngle, mEndAngle);
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
