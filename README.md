@@ -1,5 +1,12 @@
-## CirclularDemo
+## CircularDemo
 
 Not a catchy name, I know...
 
-![CircleDemo](https://cdn.rawgit.com/daentech/CircularDemo/master/docs/anim.gif)
+### Features
+
+* Circular progress with percent text
+	* xml styleable colors
+	* xml styleable fonts
+* Horizontal progress bar with rounded ends
+
+![CircleDemo](https://cdn.rawgit.com/daentech/CircularDemo/master/docs/anim.gif =320x568)
