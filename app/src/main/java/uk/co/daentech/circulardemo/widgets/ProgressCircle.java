@@ -84,7 +84,7 @@ public class ProgressCircle extends View {
         incompletePaint.setStyle(Paint.Style.STROKE);
         incompletePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_placeholder);
+//        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_placeholder);
 
     }
 
@@ -135,12 +135,12 @@ public class ProgressCircle extends View {
         incompletePaint.setColor(color);
     }
 
-    public void setValue(float value) {
-        if (value > 1.0f || value < 0) {
-            throw new RuntimeException("Value must be between 0 and 1: " + value);
+    public void setProgress(float progress) {
+        if (progress > 1.0f || progress < 0) {
+            throw new RuntimeException("Value must be between 0 and 1: " + progress);
         }
 
-        mEndAngle = value;
+        mEndAngle = progress;
 
         this.invalidate();
     }

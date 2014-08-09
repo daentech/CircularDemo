@@ -62,7 +62,7 @@ public class ProgressBar extends View {
                     0,
                     lineHeight / 2,
                     canvas.getWidth() * currentProgress
-                            - (currentProgress * canvas.getWidth() < canvas.getWidth() - lineHeight * 2 ?
+                            - (currentProgress * canvas.getWidth() < canvas.getWidth() - lineHeight / 2 ?
                             gap : 0),
                     lineHeight / 2,
                     progressPaint);
@@ -70,7 +70,7 @@ public class ProgressBar extends View {
         if (currentProgress * canvas.getWidth() < canvas.getWidth() - lineHeight / 2) {
             temp.drawLine(
                     canvas.getWidth() * currentProgress
-                            + (currentProgress * canvas.getWidth() > lineHeight * 2 ? gap : 0),
+                            + (currentProgress * canvas.getWidth() > lineHeight / 2 ? gap : 0),
                     lineHeight / 2,
                     canvas.getWidth(),
                     lineHeight / 2,
