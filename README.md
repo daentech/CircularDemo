@@ -9,4 +9,4 @@ Not a catchy name, I know...
 	* xml styleable fonts
 * Horizontal progress bar with rounded ends
 
-![CircleDemo](https://cdn.rawgit.com/daentech/CircularDemo/master/docs/anim.gif =320x568)
+![CircleDemo](https://cdn.rawgit.com/daentech/CircularDemo/master/docs/anim.gif)
