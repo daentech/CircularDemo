@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = '0.8.679'
     ext.kotlin_version = '0.8.484'
     repositories {
         mavenCentral()
@@ -13,10 +14,10 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    buildToolsVersion '20.0.0'
 
     defaultConfig {
-        applicationId "uk.co.daentech.circulardemo"
+        applicationId "uk.co.daentech.animchart"
         minSdkVersion 15
         targetSdkVersion 19
         versionCode 1
@@ -36,6 +37,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':library')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {

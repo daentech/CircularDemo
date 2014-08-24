@@ -1,10 +1,9 @@
-package uk.co.daentech.circulardemo.widgets;
+package uk.co.daentech.animchart.library.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;

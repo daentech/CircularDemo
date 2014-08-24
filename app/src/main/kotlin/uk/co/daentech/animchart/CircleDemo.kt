@@ -1,4 +1,4 @@
-package uk.co.daentech.circulardemo
+package uk.co.daentech.animchart
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.view.View
 
 import java.util.Random
 
-import uk.co.daentech.circulardemo.widgets.ProgressBar
-import uk.co.daentech.circulardemo.widgets.ProgressCircle
+import uk.co.daentech.animchart.library.widgets.ProgressBar
+import uk.co.daentech.animchart.library.widgets.ProgressCircle
 
 public class CircleDemo() : Activity() {
 

@@ -1,4 +1,4 @@
-package uk.co.daentech.circulardemo;
+package uk.co.daentech.animchart;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,10 +1,9 @@
-package uk.co.daentech.circulardemo.widgets;
+package uk.co.daentech.animchart.library.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -15,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import uk.co.daentech.circulardemo.R;
+import uk.co.daentech.animchart.library.R;
 
 /**
  * Created by dangilbert on 05/08/2014.
