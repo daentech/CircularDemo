@@ -52,13 +52,25 @@ public class ProgressCircle extends View {
         int incompleteColor;
 
         try {
-            textColor = a.getColor(R.styleable.ProgressCircle_android_textColor, android.R.color.holo_red_dark);
+            textColor = a.getColor(R.styleable.ProgressCircle_android_textColor, 0);
             textSize = a.getDimension(R.styleable.ProgressCircle_android_textSize, 100);
 
             strokeWidth = a.getDimension(R.styleable.ProgressCircle_strokeWidth, 30.0f);
 
-            progressColor = a.getColor(R.styleable.ProgressCircle_progressColor, android.R.color.holo_blue_bright);
-            incompleteColor = a.getColor(R.styleable.ProgressCircle_incompleteProgressColor, android.R.color.darker_gray);
+            progressColor = a.getColor(R.styleable.ProgressCircle_progressColor, 0);
+            incompleteColor = a.getColor(R.styleable.ProgressCircle_incompleteProgressColor, 0);
+
+            if (textColor == 0) {
+                textColor = getResources().getColor(a.getResourceId(R.styleable.ProgressCircle_android_textColor, android.R.color.holo_blue_bright));
+            }
+
+            if (progressColor == 0) {
+                progressColor = getResources().getColor(a.getResourceId(R.styleable.ProgressCircle_progressColor, android.R.color.holo_blue_bright));
+            }
+
+            if (incompleteColor == 0) {
+                incompleteColor = getResources().getColor(a.getResourceId(R.styleable.ProgressCircle_incompleteProgressColor, android.R.color.darker_gray));
+            }
         } finally {
             a.recycle();
         }

@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:textSize="80sp"
-        android:textColor="#BBD452"
-        app:progressColor="#BBD452"
+        android:textColor="@color/AppGreen"
+        app:progressColor="@color/AppGreen"
         app:incompleteProgressColor="#D4D4D4"
         app:strokeWidth="35dp"/>
     <uk.co.daentech.animchart.library.widgets.ProgressBar
         android:id="@+id/progress_bar"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:progressColor="@color/OrangeBar"/>
 </LinearLayout>

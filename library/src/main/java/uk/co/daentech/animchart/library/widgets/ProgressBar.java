@@ -2,8 +2,10 @@ package uk.co.daentech.animchart.library.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -12,6 +14,8 @@ import android.graphics.Region;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
+import uk.co.daentech.animchart.library.R;
 
 /**
  * Created by dan.gilbert on 06/08/14.
@@ -33,10 +37,33 @@ public class ProgressBar extends View {
     public ProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        progressPaint.setColor(getResources().getColor(android.R.color.holo_blue_bright));
+        TypedArray a = context.getTheme().obtainStyledAttributes(
+                attrs,
+                R.styleable.ProgressBar,
+                0, 0);
+
+        int completeColor;
+        int incompleteColor;
+
+        try {
+            completeColor = a.getColor(R.styleable.ProgressBar_progressColor, 0);
+            incompleteColor = a.getColor(R.styleable.ProgressBar_incompleteProgressColor, 0);
+
+            if (completeColor == 0) {
+                completeColor = getResources().getColor(a.getResourceId(R.styleable.ProgressBar_progressColor, android.R.color.holo_blue_bright));
+            }
+
+            if (incompleteColor == 0) {
+                incompleteColor = getResources().getColor(a.getResourceId(R.styleable.ProgressBar_incompleteProgressColor, android.R.color.darker_gray));
+            }
+        } finally {
+            a.recycle();
+        }
+
+        progressPaint.setColor(completeColor);
         progressPaint.setStrokeWidth(lineHeight);
 
-        incompletePaint.setColor(getResources().getColor(android.R.color.darker_gray));
+        incompletePaint.setColor(incompleteColor);
         incompletePaint.setStrokeWidth(lineHeight);
 
 
