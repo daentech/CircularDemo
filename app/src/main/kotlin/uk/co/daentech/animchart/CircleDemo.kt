@@ -23,6 +23,8 @@ public class CircleDemo() : Activity() {
         progressCircle = findViewById(R.id.progress_circle) as ProgressCircle
         progressBar = findViewById(R.id.progress_bar) as ProgressBar
 
+        progressCircle?.setProgress(0.5f)
+        progressBar?.setProgress(0.5f)
         progressCircle?.startAnimation()
         progressBar?.startAnimation()
     }
