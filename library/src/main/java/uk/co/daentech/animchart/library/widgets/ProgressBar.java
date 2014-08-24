@@ -52,8 +52,11 @@ public class ProgressBar extends View {
             clipRect = new RectF(0, 0, canvas.getWidth(), lineHeight);
             clipPath = new Path();
             clipPath.addRoundRect(clipRect, lineHeight / 2, lineHeight / 2, Path.Direction.CW);
+
+            bitmap = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
         }
-        bitmap = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
+
+        bitmap.eraseColor(getResources().getColor(android.R.color.transparent));
         temp = new Canvas(bitmap);
 
         if (currentProgress * canvas.getWidth() > lineHeight / 2) {
