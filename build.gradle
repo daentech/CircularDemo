@@ -1,4 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+group = 'uk.co.daentech.animchart'
+description = 'An animated charting library'
+version = '0.1'
 
 buildscript {
     repositories {
